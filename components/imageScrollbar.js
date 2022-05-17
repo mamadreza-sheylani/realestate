@@ -6,13 +6,15 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 const LeftArrow = () => {
   const { scrollPrev } = useContext(VisibilityContext);
+
   return (
-    <Flex justifyContent="center" alignItems="center" marginRight="8">
+    <Flex justifyContent="center" alignItems="center" marginRight="1">
       <Icon
         as={FaArrowAltCircleLeft}
         onClick={() => scrollPrev()}
         fontSize="2xl"
         cursor="pointer"
+        d={["none", "none", "none", "block"]}
       />
     </Flex>
   );
@@ -20,41 +22,42 @@ const LeftArrow = () => {
 
 const RightArrow = () => {
   const { scrollNext } = useContext(VisibilityContext);
+
   return (
-    <Flex justifyContent="center" alignItems="center" marginRight="8">
+    <Flex justifyContent="center" alignItems="center" marginLeft="1">
       <Icon
         as={FaArrowAltCircleRight}
         onClick={() => scrollNext()}
         fontSize="2xl"
         cursor="pointer"
+        d={["none", "none", "none", "block"]}
       />
     </Flex>
   );
 };
-
-const ImageScrollbar = ({ data }) => {
+const ImageSrollbar = ({ data }) => {
   return (
     <ScrollMenu
       LeftArrow={LeftArrow}
       RightArrow={RightArrow}
       style={{ overflow: "hidden" }}
     >
-      {data.map((image) => (
+      {data.map((item) => (
         <Box
-          width={910}
-          itemID={image.id}
+          width="910px"
+          itemId={item.id}
           overflow="hidden"
           p="1"
-          key={image.id}
+          key={item.id}
         >
           <Image
-            src={image.url}
             placeholder="blur"
-            blurDataURL={image.url}
-            alt="properties"
-            width="1000px"
-            height="500px"
-            sizes="(max-width:500px) 100px,(max-width:1024px) 400px,1000px"
+            blurDataURL={item.url}
+            src={item.url}
+            width={1000}
+            height={500}
+            sizes="(max-width: 500px) 100px, (max-width: 1023px) 400px, 1000px"
+            alt={item.title}
           />
         </Box>
       ))}
@@ -62,4 +65,4 @@ const ImageScrollbar = ({ data }) => {
   );
 };
 
-export default ImageScrollbar;
+export default ImageSrollbar;
